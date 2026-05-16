@@ -248,7 +248,6 @@ export function QuizApp() {
             <div className="w-10 h-10 bg-sky-500 rounded-lg flex items-center justify-center font-bold text-slate-950 text-xl italic">Q</div>
             <div>
               <h1 className="text-xl font-bold tracking-tight uppercase text-white">Qatte.quest</h1>
-              <p className="text-xs text-slate-500 font-mono">SESSION_ID: XK-902-QL</p>
             </div>
           </div>
           
