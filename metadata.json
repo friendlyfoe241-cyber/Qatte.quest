@@ -1,0 +1,6 @@
+{
+  "name": "Qatte.quest",
+  "description": "A cheat-proof quizzing website featuring window focus detection, copy-paste prevention, and timed responses.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

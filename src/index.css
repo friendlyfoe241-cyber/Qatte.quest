@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  @apply bg-slate-950 text-slate-200 font-sans antialiased min-h-full overflow-y-auto;
+  margin: 0;
+}
+
+html {
+  @apply min-h-full m-0 bg-slate-950;
+}
+
