@@ -114,10 +114,6 @@ export function QuizApp() {
           <li>Right-clicking is disabled.</li>
           <li>Each question has a strict time limit.</li>
         </ul>
-        <p className="text-xs text-rose-500/80 mt-4 italic font-medium">
-          Note: If you use the AI Studio Chat while playing, you will lose window focus and trigger a violation. 
-          Focus only on the quiz!
-        </p>
       </div>
 
       <button
