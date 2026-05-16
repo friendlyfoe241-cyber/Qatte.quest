@@ -14,6 +14,7 @@ export function QuizApp() {
   const [score, setScore] = useState(0);
   const [timeLeft, setTimeLeft] = useState(0);
   const [violationReason, setViolationReason] = useState<string | null>(null);
+  const [textAnswer, setTextAnswer] = useState("");
 
   const quiz = QUIZZES.find(q => q.id === selectedQuizId) || QUIZZES[0];
   const currentQuestion = quiz.questions[currentQuestionIdx];
@@ -46,6 +47,7 @@ export function QuizApp() {
     setCurrentQuestionIdx(0);
     setScore(0);
     setTimeLeft(quiz.questions[0].timeLimitSecs);
+    setTextAnswer("");
   };
 
   const resetDemo = () => {
@@ -64,6 +66,7 @@ export function QuizApp() {
     if (currentQuestionIdx + 1 < quiz.questions.length) {
       setCurrentQuestionIdx((i) => i + 1);
       setTimeLeft(quiz.questions[currentQuestionIdx + 1].timeLimitSecs);
+      setTextAnswer("");
     } else {
       setAppState('results');
     }
@@ -147,7 +150,7 @@ export function QuizApp() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-auto">
-          {currentQuestion.options.map((option, idx) => (
+          {(!currentQuestion.type || currentQuestion.type === 'multiple-choice') && currentQuestion.options?.map((option, idx) => (
             <button
               key={idx}
               onClick={() => nextQuestion(idx === currentQuestion.correctAnswer)}
@@ -161,6 +164,35 @@ export function QuizApp() {
               </div>
             </button>
           ))}
+
+          {currentQuestion.type === 'text-input' && (
+            <div className="col-span-1 md:col-span-2 flex flex-col gap-4">
+              <input
+                type="text"
+                value={textAnswer}
+                onChange={(e) => setTextAnswer(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const isCorrect = textAnswer.trim().toLowerCase() === String(currentQuestion.correctAnswer).toLowerCase();
+                    nextQuestion(isCorrect);
+                  }
+                }}
+                placeholder="Type your answer here..."
+                className="w-full bg-slate-800/50 border border-slate-700 rounded-xl p-6 text-xl text-slate-200 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all font-mono"
+                autoComplete="off"
+                spellCheck="false"
+              />
+              <button
+                onClick={() => {
+                  const isCorrect = textAnswer.trim().toLowerCase() === String(currentQuestion.correctAnswer).toLowerCase();
+                  nextQuestion(isCorrect);
+                }}
+                className="self-start px-8 py-4 bg-sky-500 text-slate-950 rounded-xl font-bold hover:bg-sky-400 transition-all uppercase tracking-widest text-sm"
+              >
+                Submit Validation
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

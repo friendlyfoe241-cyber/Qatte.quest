@@ -1,8 +1,11 @@
+export type QuestionType = 'multiple-choice' | 'text-input';
+
 export type Question = {
   id: string;
+  type?: QuestionType;
   text: string;
-  options: string[];
-  correctAnswer: number;
+  options?: string[];
+  correctAnswer: number | string;
   timeLimitSecs: number; // Time limit for this specific question
 };
 
@@ -39,6 +42,14 @@ export const QUIZZES: Quiz[] = [
         options: ["Seoul", "Beijing", "Tokyo", "Bangkok"],
         correctAnswer: 2,
         timeLimitSecs: 15,
+      },
+      {
+        id: "q4",
+        type: "text-input",
+        text: "What is the chemical symbol for water?",
+        options: [],
+        correctAnswer: "H2O",
+        timeLimitSecs: 20,
       }
     ]
   },
@@ -99,4 +110,3 @@ export const QUIZZES: Quiz[] = [
     ]
   }
 ];
-
